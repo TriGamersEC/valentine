@@ -1,1 +1,137 @@
+import tkinter as tk
+from tkinter import PhotoImage
+import random
+
+ventana = tk.Tk()
+ventana.title("💗 Hello Kitty Love 💗")
+ventana.geometry("600x600")
+ventana.config(bg="#ffd6ec")
+
+# Cargar imágenes
+mono_img = PhotoImage(file="mono.png")
+gato_img = PhotoImage(file="gato.png")
+final_img = PhotoImage(file="final.png")
+
+# Frame principal
+frame = tk.Frame(ventana, bg="#ffd6ec")
+frame.pack(expand=True, fill="both")
+
+# Función limpiar pantalla
+def limpiar():
+    for widget in frame.winfo_children():
+        widget.destroy()
+
+# Paso 1
+def paso1():
+    limpiar()
+    tk.Label(frame,
+             text="Hola Señora Lely cocolon quisiera hacerle una pregunta 💌",
+             font=("Comic Sans MS", 16, "bold"),
+             bg="#ffd6ec",
+             wraplength=500).pack(pady=40)
+
+    tk.Button(frame,
+              text="Continuar 🎀",
+              font=("Comic Sans MS", 12),
+              bg="#ff69b4",
+              fg="white",
+              command=paso2).pack()
+
+# Paso 2
+def paso2():
+    limpiar()
+    tk.Label(frame,
+             text="Mas vale que digas que si sapa 😼",
+             font=("Comic Sans MS", 16, "bold"),
+             bg="#ffd6ec").pack(pady=20)
+
+    tk.Label(frame, image=mono_img, bg="#ffd6ec").pack(pady=10)
+
+    tk.Button(frame,
+              text="Continuar 💖",
+              font=("Comic Sans MS", 12),
+              bg="#ff69b4",
+              fg="white",
+              command=paso3).pack(pady=20)
+
+# Paso 3
+def paso3():
+    limpiar()
+
+    tk.Label(frame,
+             text='¿Me darías el privilegio de que seas por primera vez "My Valentine\'s Day"? 💘',
+             font=("Comic Sans MS", 14, "bold"),
+             bg="#ffd6ec",
+             wraplength=500).pack(pady=30)
+
+    boton_si = tk.Button(frame,
+                         text="💖 SI 💖",
+                         font=("Comic Sans MS", 12),
+                         bg="#ff1493",
+                         fg="white",
+                         command=paso4)
+    boton_si.place(x=220, y=350)
+
+    boton_no = tk.Button(frame,
+                         text="NO 😅",
+                         font=("Comic Sans MS", 12),
+                         bg="gray",
+                         fg="white")
+    boton_no.place(x=350, y=350)
+
+    # El botón NO se mueve cuando intentan tocarlo
+    def mover(event):
+        x = random.randint(50, 450)
+        y = random.randint(250, 500)
+        boton_no.place(x=x, y=y)
+
+    boton_no.bind("<Enter>", mover)
+
+# Paso 4
+def paso4():
+    limpiar()
+    tk.Label(frame,
+             text="Tankiu señora Cocolon, la amo mucho jkdjskdsdj\nnadie fue obligada 😌💗",
+             font=("Comic Sans MS", 16, "bold"),
+             bg="#ffd6ec",
+             wraplength=500).pack(pady=60)
+
+    tk.Button(frame,
+              text="Siguiente 🎀",
+              font=("Comic Sans MS", 12),
+              bg="#ff69b4",
+              fg="white",
+              command=paso5).pack()
+
+# Paso 5
+def paso5():
+    limpiar()
+    tk.Label(frame,
+             text="Tenga unas flores por bonita 🌹💐",
+             font=("Comic Sans MS", 16, "bold"),
+             bg="#ffd6ec").pack(pady=20)
+
+    tk.Label(frame, image=gato_img, bg="#ffd6ec").pack(pady=20)
+
+    tk.Button(frame,
+              text="Final 💕",
+              font=("Comic Sans MS", 12),
+              bg="#ff69b4",
+              fg="white",
+              command=paso6).pack(pady=20)
+
+# Paso 6 (Final)
+def paso6():
+    limpiar()
+    tk.Label(frame,
+             text="💘 Final Especial 💘",
+             font=("Comic Sans MS", 18, "bold"),
+             bg="#ffd6ec").pack(pady=20)
+
+    tk.Label(frame, image=final_img, bg="#ffd6ec").pack(pady=20)
+
+# Iniciar
+paso1()
+
+ventana.mainloop()
 
